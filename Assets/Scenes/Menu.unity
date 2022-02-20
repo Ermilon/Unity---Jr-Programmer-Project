@@ -688,6 +688,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &913213891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913213893}
+  - component: {fileID: 913213892}
+  m_Layer: 0
+  m_Name: MainManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &913213892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913213891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db6bbf90c0bba7f4a994c735a6a09f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &913213893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913213891}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 598.84265, y: 413.2094, z: -32.63464}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &991742391
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,10 +809,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AvailableColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.16898394, b: 1, a: 1}
-  - {r: 0.26900482, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.91166264, b: 0, a: 1}
+  - {r: 0.5188679, g: 0.13461196, b: 0.19369991, a: 1}
+  - {r: 0.22467959, g: 0.43922576, b: 0.9339623, a: 1}
+  - {r: 0.21584602, g: 0.6509434, b: 0.16887684, a: 1}
+  - {r: 0.8223334, g: 0.8396226, b: 0.38416696, a: 1}
   ColorButtonPrefab: {fileID: 645939441953464998, guid: 550a8281bf235dd4e8407162745631ba, type: 3}
 --- !u!114 &991742395
 MonoBehaviour:

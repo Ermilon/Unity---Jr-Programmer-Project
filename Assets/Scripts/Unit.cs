@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,23 +24,20 @@ public abstract class Unit : MonoBehaviour,
 
     private void Start()
     {
-
+        if (MainManager.Instance != null) SetColor(MainManager.Instance.TeamColor);
     }
 
-    void SetColor(Color c)
+    private void SetColor(Color c)
     {
         var colorHandler = GetComponentInChildren<ColorHandler>();
-        if (colorHandler != null)
-        {
-            colorHandler.SetColor(c);
-        }
+        if (colorHandler != null) colorHandler.SetColor(c);
     }
 
     private void Update()
     {
         if (m_Target != null)
         {
-            float distance = Vector3.Distance(m_Target.transform.position, transform.position);
+            var distance = Vector3.Distance(m_Target.transform.position, transform.position);
             if (distance < 2.0f)
             {
                 m_Agent.isStopped = true;
@@ -92,6 +87,5 @@ public abstract class Unit : MonoBehaviour,
 
     public virtual void GetContent(ref List<Building.InventoryEntry> content)
     {
-        
     }
 }
