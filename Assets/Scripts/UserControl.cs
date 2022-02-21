@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -12,7 +9,7 @@ public class UserControl : MonoBehaviour
     public Camera GameCamera;
     public float PanSpeed = 10.0f;
     public GameObject Marker;
-    
+
     private Unit m_Selected = null;
 
     private void Start()
@@ -23,47 +20,59 @@ public class UserControl : MonoBehaviour
     private void Update()
     {
         Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        GameCamera.transform.position = GameCamera.transform.position + new Vector3(move.y, 0, -move.x) * PanSpeed * Time.deltaTime;
+        GameCamera.transform.position =
+            GameCamera.transform.position + new Vector3(move.y, 0, -move.x) * PanSpeed * Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0))
         {
-            var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                //the collider could be children of the unit, so we make sure to check in the parent
-                var unit = hit.collider.GetComponentInParent<Unit>();
-                m_Selected = unit;
-                
-                
-                //check if the hit object have a IUIInfoContent to display in the UI
-                //if there is none, this will be null, so this will hid the panel if it was displayed
-                var uiInfo = hit.collider.GetComponentInParent<UIMainScene.IUIInfoContent>();
-                UIMainScene.Instance.SetNewInfoContent(uiInfo);
-            }
+            HandleSelection();
         }
         else if (m_Selected != null && Input.GetMouseButtonDown(1))
-        {//right click give order to the unit
-            var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                var building = hit.collider.GetComponentInParent<Building>();
-                
-                if (building != null)
-                {
-                    m_Selected.GoTo(building);
-                }
-                else
-                {
-                    m_Selected.GoTo(hit.point);
-                }
-            }
+        {
+            //right click give order to the unit
+            HandleAction();
         }
 
         MarkerHandling();
     }
-    
+
+    public void HandleSelection()
+    {
+        var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            //the collider could be children of the unit, so we make sure to check in the parent
+            var unit = hit.collider.GetComponentInParent<Unit>();
+            m_Selected = unit;
+
+
+            //check if the hit object have a IUIInfoContent to display in the UI
+            //if there is none, this will be null, so this will hid the panel if it was displayed
+            var uiInfo = hit.collider.GetComponentInParent<UIMainScene.IUIInfoContent>();
+            UIMainScene.Instance.SetNewInfoContent(uiInfo);
+        }
+    }
+
+    public void HandleAction()
+    {
+        var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            var building = hit.collider.GetComponentInParent<Building>();
+
+            if (building != null)
+            {
+                m_Selected.GoTo(building);
+            }
+            else
+            {
+                m_Selected.GoTo(hit.point);
+            }
+        }
+    }
+
     // Handle displaying the marker above the unit that is currently selected (or hiding it if no unit is selected)
     void MarkerHandling()
     {
@@ -77,6 +86,6 @@ public class UserControl : MonoBehaviour
             Marker.SetActive(true);
             Marker.transform.SetParent(m_Selected.transform, false);
             Marker.transform.localPosition = Vector3.zero;
-        }    
+        }
     }
 }

@@ -12,7 +12,7 @@ public abstract class Unit : MonoBehaviour,
     public float Speed = 3;
 
     protected NavMeshAgent m_Agent;
-    protected Building m_Target;
+    [SerializeField] protected Building m_Target;
 
     protected void Awake()
     {
